@@ -10,13 +10,7 @@ class CopyrightWebpackPlugin {
       "CopyrightWebpackPlugin",
       (compilation, cb) => {
         const text = `/* copyright by ${this.options.author} */ \n`;
-        Object.keys(compilation.assets).forEach((item) => {
-          let content = text + compilation.assets[item].source();
-          compilation.assets[item] = {
-            source: () => content,
-            size: () => content.length,
-          };
-        });
+        // 添加一个 copyright.txt 文件到输出文件夹
         compilation.assets["copyright.txt"] = {
           source: function () {
             return text;
